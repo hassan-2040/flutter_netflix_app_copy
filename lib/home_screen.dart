@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:netflixcopyapp/constants.dart';
+import 'package:netflixcopyapp/coming_soon_page.dart';
+import 'package:netflixcopyapp/downloads_page.dart';
 import 'package:netflixcopyapp/home_page.dart';
+import 'package:netflixcopyapp/more_page.dart';
 import 'package:netflixcopyapp/search_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
     var _pages = [
       HomePage(),
       SearchPage(),
-      Text('Coming Soon'),
-      Text('Download'),
-      Text('More'),
+      ComingSoonPage(),
+      DownloadsPage(),
+      MorePage(),
     ];
     return _pages;
   }
@@ -30,18 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: kNavBarTextColor,
+        unselectedItemColor: Colors.grey,
         selectedLabelStyle: TextStyle(
-          fontSize: kNavBarTextSize,
+          fontSize: 8.0,
         ),
         unselectedLabelStyle: TextStyle(
-          fontSize: kNavBarTextSize,
+          fontSize: 8.0,
         ),
         selectedIconTheme: IconThemeData(
-          size: kNavBarIconSize,
+          size: 25.0,
         ),
         unselectedIconTheme: IconThemeData(
-          size: kNavBarIconSize,
+          size: 25.0,
         ),
         backgroundColor: Colors.grey[900],
         currentIndex: _pageIndex,
@@ -82,9 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             title: Text(
               'Downloads',
-              style: TextStyle(
-                color: kNavBarTextColor,
-              ),
             ),
           ),
           BottomNavigationBarItem(
