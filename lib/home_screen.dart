@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:netflixcopyapp/coming_soon_page.dart';
-import 'package:netflixcopyapp/downloads_page.dart';
+import 'package:netflixcopyapp/pages/coming_soon_page.dart';
+import 'package:netflixcopyapp/pages/downloads_page.dart';
 import 'package:netflixcopyapp/helpers/size_config.dart';
-import 'package:netflixcopyapp/home_page.dart';
-import 'package:netflixcopyapp/more_page.dart';
-import 'package:netflixcopyapp/search_page.dart';
+import 'package:netflixcopyapp/pages/home_page.dart';
+import 'package:netflixcopyapp/pages/more_page.dart';
+import 'package:netflixcopyapp/pages/search_page.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

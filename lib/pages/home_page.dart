@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflixcopyapp/helpers/size_config.dart';
 import 'package:netflixcopyapp/widgets/featured_listing_widget.dart';
+import 'package:netflixcopyapp/widgets/previews_row_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -112,11 +113,7 @@ class _HomePageState extends State<HomePage>
                 SizedBox(
                   height: 30,
                 ),
-                Container(
-                  height: 400,
-                  width: double.maxFinite,
-                  color: Colors.blue,
-                ),
+                const PreviewsRowWidget(),
                 SizedBox(
                   height: 30,
                 ),
