@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflixcopyapp/coming_soon_page.dart';
 import 'package:netflixcopyapp/downloads_page.dart';
+import 'package:netflixcopyapp/helpers/size_config.dart';
 import 'package:netflixcopyapp/home_page.dart';
 import 'package:netflixcopyapp/more_page.dart';
 import 'package:netflixcopyapp/search_page.dart';
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: Center(
         child: pages[_pageIndex],
@@ -34,10 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: TextStyle(
-          fontSize: 8.0,
+          fontSize: SizeConfig.textSizeSmall,
         ),
         unselectedLabelStyle: TextStyle(
-          fontSize: 8.0,
+          fontSize: SizeConfig.textSizeSmall,
         ),
         selectedIconTheme: IconThemeData(
           size: 25.0,

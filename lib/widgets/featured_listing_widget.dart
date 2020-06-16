@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflixcopyapp/helpers/size_config.dart';
 
 class FeaturedListingWidget extends StatelessWidget {
   const FeaturedListingWidget();
@@ -9,9 +10,9 @@ class FeaturedListingWidget extends StatelessWidget {
       overflow: Overflow.visible,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(bottom: 70.0),
+          padding: EdgeInsets.only(bottom: 70.0),
           child: Container(
-            height: 450,
+            height: SizeConfig.smallDevice ? 300 : 450,
             width: double.maxFinite,
             color: Colors.black,
             child: Image.network(
@@ -75,7 +76,7 @@ class FeaturedListingWidget extends StatelessWidget {
                     'Slick',
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 12,
+                      fontSize: SizeConfig.textSizeNormal,
                     ),
                   ),
                   SizedBox(
@@ -93,7 +94,7 @@ class FeaturedListingWidget extends StatelessWidget {
                     'Suspenseful',
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 12,
+                      fontSize: SizeConfig.textSizeNormal,
                     ),
                   ),
                   SizedBox(
@@ -111,7 +112,7 @@ class FeaturedListingWidget extends StatelessWidget {
                     'Exciting',
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 12,
+                      fontSize: SizeConfig.textSizeNormal,
                     ),
                   ),
                   SizedBox(
@@ -129,7 +130,7 @@ class FeaturedListingWidget extends StatelessWidget {
                     'Thriller',
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 12,
+                      fontSize: SizeConfig.textSizeNormal,
                     ),
                   ),
                   SizedBox(
@@ -147,7 +148,7 @@ class FeaturedListingWidget extends StatelessWidget {
                     'Drama',
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 12,
+                      fontSize: SizeConfig.textSizeNormal,
                     ),
                   ),
                 ],
@@ -172,7 +173,7 @@ class FeaturedListingWidget extends StatelessWidget {
                           'My List',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
-                            fontSize: 9,
+                            fontSize: SizeConfig.textSizeSmall,
                           ),
                         ),
                       ],
@@ -195,6 +196,7 @@ class FeaturedListingWidget extends StatelessWidget {
                           'Play',
                           style: TextStyle(
                             color: Colors.black,
+                            fontSize: SizeConfig.textSizeNormal,
                           ),
                         ),
                       ],
@@ -216,7 +218,7 @@ class FeaturedListingWidget extends StatelessWidget {
                           'Info',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
-                            fontSize: 9,
+                            fontSize: SizeConfig.textSizeSmall,
                           ),
                         ),
                       ],

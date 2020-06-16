@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:netflixcopyapp/helpers/size_config.dart';
 import 'package:netflixcopyapp/widgets/featured_listing_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -155,7 +156,7 @@ class _HomePageState extends State<HomePage>
                     Text(
                       'TV Show',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: SizeConfig.textSizeLarge,
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.normal,
                       ),
@@ -163,7 +164,7 @@ class _HomePageState extends State<HomePage>
                     Text(
                       'Movies',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: SizeConfig.textSizeLarge,
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.normal,
                       ),
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage>
                     Text(
                       'My List',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: SizeConfig.textSizeLarge,
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.normal,
                       ),
