@@ -1,27 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:netflixcopyapp/helpers/size_config.dart';
 
-class PreviewsRowWidget extends StatefulWidget {
-  const PreviewsRowWidget();
+class ListingsRowWidget extends StatefulWidget {
+  final double listingWidth;
+  final double listingHeight;
+  final String rowTitle;
+  final String imageUrl;
+  const ListingsRowWidget({
+    @required this.listingHeight,
+    @required this.listingWidth,
+    @required this.rowTitle,
+    @required this.imageUrl,
+  });
 
   @override
-  _PreviewsRowWidgetState createState() => _PreviewsRowWidgetState();
+  _ListingsRowWidgetState createState() => _ListingsRowWidgetState();
 }
 
-class _PreviewsRowWidgetState extends State<PreviewsRowWidget> {
+class _ListingsRowWidgetState extends State<ListingsRowWidget> {
   bool _hasMore = true;
 
   List<String> _previewsList = [
-    'King Kong',
-    'Avengers',
-    'Captain amercia',
-    'Dunkirk',
-    'Easy A',
-    'Stranger Things',
-    'the A Team',
-    'Series of Unfortunate Events',
-    'The Big Bang Theory',
-    'How i met your Mother',
+    'Shield',
+    'Agents of Shield',
+    'Gotham',
+    'batman',
+    'Superman',
+    'Wonderwoman',
+    'The Flash',
+    'Arrow',
+    'Pedantic',
+    'Penny Dreadful',
   ];
 
   bool _handleScrollNotification(ScrollNotification notification) {
@@ -35,16 +44,16 @@ class _PreviewsRowWidgetState extends State<PreviewsRowWidget> {
 
   void _loadMore() async {
     List<String> _nextTen = [
-      'Shield',
-      'Agents of Shield',
-      'Gotham',
-      'batman',
-      'Superman',
-      'Wonderwoman',
-      'The Flash',
-      'Arrow',
-      'Pedantic',
-      'Penny Dreadful',
+      'King Kong',
+      'Avengers',
+      'Captain amercia',
+      'Dunkirk',
+      'Easy A',
+      'Stranger Things',
+      'the A Team',
+      'Series of Unfortunate Events',
+      'The Big Bang Theory',
+      'How i met your Mother',
     ];
     List<String> _last = [
       'Kabir Singh',
@@ -84,7 +93,7 @@ class _PreviewsRowWidgetState extends State<PreviewsRowWidget> {
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
-            'Previews',
+            widget.rowTitle,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: SizeConfig.textSizeMainHeading,
@@ -93,7 +102,7 @@ class _PreviewsRowWidgetState extends State<PreviewsRowWidget> {
           ),
         ),
         Container(
-          height: SizeConfig.smallDevice ? 100 : 130,
+          height: widget.listingHeight,
           child: NotificationListener<ScrollNotification>(
             onNotification: _handleScrollNotification,
             child: ListView.builder(
@@ -106,21 +115,26 @@ class _PreviewsRowWidgetState extends State<PreviewsRowWidget> {
                   return Padding(
                     padding: const EdgeInsets.only(
                       left: 10.0,
-                      top: 10.0,
-                      right: 10.0,
+//                      top: 10.0,
+                      right: 8.0,
                     ),
-                    child: SinglePreviewWidget(title: _previewsList[index]),
+                    child: SingleListingWidget(
+                      height: widget.listingHeight,
+                      width: widget.listingWidth,
+                      imageUrl: widget.imageUrl,
+                    ),
                   );
                 }
 
                 if (index == _previewsList.length) {
                   if (_hasMore) {
                     return Container(
-                      width: SizeConfig.smallDevice ? 70 : 80,
-                      height: SizeConfig.smallDevice ? 50 : 60,
+                      width: widget.listingWidth,
+                      height: widget.listingHeight,
                       child: Center(
                         child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Theme.of(context).primaryColor),
                         ),
                       ),
                     );
@@ -135,10 +149,14 @@ class _PreviewsRowWidgetState extends State<PreviewsRowWidget> {
 
                 return Padding(
                   padding: const EdgeInsets.only(
-                    top: 10.0,
-                    right: 10.0,
+//                    top: 10.0,
+                    right: 8.0,
                   ),
-                  child: SinglePreviewWidget(title: _previewsList[index]),
+                  child: SingleListingWidget(
+                    height: widget.listingHeight,
+                    width: widget.listingWidth,
+                    imageUrl: widget.imageUrl,
+                  ),
                 );
               },
             ),
@@ -149,23 +167,26 @@ class _PreviewsRowWidgetState extends State<PreviewsRowWidget> {
   }
 }
 
-class SinglePreviewWidget extends StatefulWidget {
-  final String title;
-  const SinglePreviewWidget({
-    @required this.title,
+class SingleListingWidget extends StatefulWidget {
+  final double height;
+  final double width;
+  final String imageUrl;
+  const SingleListingWidget({
+    @required this.height,
+    @required this.width,
+    @required this.imageUrl,
   });
 
   @override
-  _SinglePreviewWidgetState createState() => _SinglePreviewWidgetState();
+  _SingleListingWidgetState createState() => _SingleListingWidgetState();
 }
 
-class _SinglePreviewWidgetState extends State<SinglePreviewWidget> {
+class _SingleListingWidgetState extends State<SingleListingWidget> {
   Image _image;
-
   @override
   void initState() {
     _image = Image.network(
-      'https://i.pinimg.com/originals/bd/02/4a/bd024a2724fbd9bd8f9b9e83488a0bb1.jpg',
+      widget.imageUrl,
       fit: BoxFit.contain,
       frameBuilder: (
         BuildContext context,
@@ -216,28 +237,10 @@ class _SinglePreviewWidgetState extends State<SinglePreviewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        CircleAvatar(
-          radius: SizeConfig.smallDevice ? 40 : 50,
-          backgroundImage: _image.image,
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: Text(
-            widget.title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: SizeConfig.smallDevice
-                  ? SizeConfig.textSizeSubHeading
-                  : SizeConfig.textSizeLarge,
-            ),
-          ),
-        )
-      ],
+    return Container(
+      height: widget.height,
+      width: widget.width,
+      child: _image,
     );
   }
 }

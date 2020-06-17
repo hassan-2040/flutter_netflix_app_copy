@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflixcopyapp/helpers/size_config.dart';
 import 'package:netflixcopyapp/widgets/featured_listing_widget.dart';
+import 'package:netflixcopyapp/widgets/listings_row_widget.dart';
 import 'package:netflixcopyapp/widgets/previews_row_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -117,18 +118,38 @@ class _HomePageState extends State<HomePage>
                 SizedBox(
                   height: 30,
                 ),
-                Container(
-                  height: 400,
-                  width: double.maxFinite,
-                  color: Colors.blue,
+                const ListingsRowWidget(
+                  rowTitle: 'My List',
+                  listingHeight: 200,
+                  listingWidth: 125,
+                  imageUrl: 'http://www.freemovieposters.net/posters/pulp_fiction_1994_6115_poster.jpg',
                 ),
                 SizedBox(
                   height: 30,
                 ),
-                Container(
-                  height: 400,
-                  width: double.maxFinite,
-                  color: Colors.blue,
+                const ListingsRowWidget(
+                  rowTitle: 'Quirky Sitcoms',
+                  listingHeight: 200,
+                  listingWidth: 125,
+                  imageUrl: 'http://www.freemovieposters.net/posters/resident_evi_2002_6129_poster.jpg',
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                const ListingsRowWidget(
+                  rowTitle: 'Trending Now',
+                  listingHeight: 200,
+                  listingWidth: 125,
+                  imageUrl: 'http://www.freemovieposters.net/posters/titanic_1997_6121_poster.jpg',
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                const ListingsRowWidget(
+                  rowTitle: 'Netflix Originals',
+                  listingHeight: 300,
+                  listingWidth: 200,
+                  imageUrl: 'http://www.freemovieposters.net/posters/mission_impossible_1996_6130_poster.jpg',
                 ),
               ],
             ),
