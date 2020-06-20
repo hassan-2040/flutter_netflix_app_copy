@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:netflixcopyapp/helpers/size_config.dart';
+import 'package:netflixcopyapp/widgets/bottom_sheet_widget.dart';
 import 'package:netflixcopyapp/widgets/single_listing_widget.dart';
 
-class ListingsRowWidget extends StatefulWidget {
-  final double listingWidth;
-  final double listingHeight;
-  final String rowTitle;
+class ContinueWatchingRowWidget extends StatefulWidget {
   final String imageUrl;
-  const ListingsRowWidget({
-    @required this.listingHeight,
-    @required this.listingWidth,
-    @required this.rowTitle,
+  const ContinueWatchingRowWidget({
     @required this.imageUrl,
   });
 
   @override
-  _ListingsRowWidgetState createState() => _ListingsRowWidgetState();
+  _ContinueWatchingRowWidgetState createState() =>
+      _ContinueWatchingRowWidgetState();
 }
 
-class _ListingsRowWidgetState extends State<ListingsRowWidget> {
+class _ContinueWatchingRowWidgetState extends State<ContinueWatchingRowWidget> {
   bool _hasMore = true;
 
   List<String> _previewsList = [
@@ -94,7 +91,7 @@ class _ListingsRowWidgetState extends State<ListingsRowWidget> {
         Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
-            widget.rowTitle,
+            'Continue Watching for Hassan',
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: SizeConfig.textSizeMainHeading,
@@ -103,7 +100,7 @@ class _ListingsRowWidgetState extends State<ListingsRowWidget> {
           ),
         ),
         Container(
-          height: widget.listingHeight,
+          height: 250,
           child: NotificationListener<ScrollNotification>(
             onNotification: _handleScrollNotification,
             child: ListView.builder(
@@ -116,12 +113,9 @@ class _ListingsRowWidgetState extends State<ListingsRowWidget> {
                   return Padding(
                     padding: const EdgeInsets.only(
                       left: 10.0,
-//                      top: 10.0,
                       right: 8.0,
                     ),
-                    child: SingleListingWidget(
-                      height: widget.listingHeight,
-                      width: widget.listingWidth,
+                    child: ContinueWatchingSingleListingWidget(
                       imageUrl: widget.imageUrl,
                     ),
                   );
@@ -130,8 +124,8 @@ class _ListingsRowWidgetState extends State<ListingsRowWidget> {
                 if (index == _previewsList.length) {
                   if (_hasMore) {
                     return Container(
-                      width: widget.listingWidth,
-                      height: widget.listingHeight,
+                      width: 200,
+                      height: 125,
                       child: Center(
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
@@ -150,12 +144,9 @@ class _ListingsRowWidgetState extends State<ListingsRowWidget> {
 
                 return Padding(
                   padding: const EdgeInsets.only(
-//                    top: 10.0,
                     right: 8.0,
                   ),
-                  child: SingleListingWidget(
-                    height: widget.listingHeight,
-                    width: widget.listingWidth,
+                  child: ContinueWatchingSingleListingWidget(
                     imageUrl: widget.imageUrl,
                   ),
                 );
@@ -168,80 +159,93 @@ class _ListingsRowWidgetState extends State<ListingsRowWidget> {
   }
 }
 
-//class SingleListingWidget extends StatefulWidget {
-//  final double height;
-//  final double width;
-//  final String imageUrl;
-//  const SingleListingWidget({
-//    @required this.height,
-//    @required this.width,
-//    @required this.imageUrl,
-//  });
-//
-//  @override
-//  _SingleListingWidgetState createState() => _SingleListingWidgetState();
-//}
-//
-//class _SingleListingWidgetState extends State<SingleListingWidget> {
-//  Image _image;
-//  @override
-//  void initState() {
-//    _image = Image.network(
-//      widget.imageUrl,
-//      fit: BoxFit.contain,
-//      frameBuilder: (
-//        BuildContext context,
-//        Widget image,
-//        int frame,
-//        bool wasSynchronouslyLoaded,
-//      ) {
-//        return AnimatedOpacity(
-//          child: image,
-//          opacity: frame == null ? 0 : 1,
-//          duration: const Duration(seconds: 1),
-//          curve: Curves.easeIn,
-//        );
-//      },
-//      loadingBuilder: (
-//        BuildContext context,
-//        Widget image,
-//        ImageChunkEvent loadingProgress,
-//      ) {
-//        if (loadingProgress == null) return image;
-//        if (loadingProgress != null &&
-//            loadingProgress.cumulativeBytesLoaded <
-//                loadingProgress.expectedTotalBytes) {
-//          return Center(
-//            child: CircularProgressIndicator(),
-//          );
-//        } else if (loadingProgress.cumulativeBytesLoaded ==
-//            loadingProgress.expectedTotalBytes) {
-//          return image;
-//        }
-//        return image;
-//      },
-//      errorBuilder:
-//          (BuildContext context, Object exception, StackTrace stackTrace) {
-//        return Center(
-//          child: Text(
-//            '${exception.toString()}',
-//            textAlign: TextAlign.center,
-//            style: TextStyle(
-//              fontSize: SizeConfig.textSizeNormal,
-//            ),
-//          ),
-//        );
-//      },
-//    );
-//    super.initState();
-//  }
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Container(
-//      height: widget.height,
-//      width: widget.width,
-//      child: _image,
-//    );
-//  }
-//}
+class ContinueWatchingSingleListingWidget extends StatelessWidget {
+  final String imageUrl;
+  ContinueWatchingSingleListingWidget({
+    @required this.imageUrl,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            SingleListingWidget(
+              height: 200,
+              width: 125,
+              imageUrl: imageUrl,
+            ),
+            Positioned(
+              right: 0,
+              left: 50,
+              bottom: 0,
+              child: Text(
+                'S2:E9',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: SizeConfig.textSizeSmall,
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: Icon(
+                Icons.play_circle_outline,
+                color: Theme.of(context).primaryColor,
+                size: 60,
+              ),
+            ),
+          ],
+        ),
+        Stack(
+          children: <Widget>[
+            Container(
+              height: 2,
+              width: 125,
+              color: Colors.grey[900],
+            ),
+            Container(
+              height: 2,
+              width: 125 / 3,
+              color: Colors.red,
+            ),
+          ],
+        ),
+        Container(
+          color: Colors.grey[900],
+          width: 125,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Icon(
+                Icons.info_outline,
+                color: Theme.of(context).primaryColor,
+              ),
+              GestureDetector(
+                onTap: () => showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      topLeft: Radius.circular(10),
+                    ),
+                  ),
+                  useRootNavigator: true,
+                  context: context,
+                  builder: (ctx) => const BottomSheetWidget(),
+                ),
+                child: Icon(
+                  LineAwesomeIcons.ellipsis_v,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
