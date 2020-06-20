@@ -1,6 +1,17 @@
-# netflixcopyapp
+# Netlix Copy App
 
-A copy of Netflix Android app 
+A copy of Netflix Android app.
+
+# Features: 
+- Single Screen.
+- Home Page:
+    - App Bar hides on scroll down and shows on scroll up.
+    - App bar Background opacity increases as screen scroll downs, until the Featured Widget offset is reached.
+    - Each Row has Paginated loading, starting from 10 records. 
+    - The ellipsis icon in 'Continue Watching' widgets opens a bottom sheet to show options available for each listing. 
+- Search Page:
+    - App Bar has an AnimatedContainer that changes size based on focus of TextField. 
+    - If Text Field has text, a clear button is displayed as suffix icon, otherwise a mic icon.    
 
 ## Getting Started
 

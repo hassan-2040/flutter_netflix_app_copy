@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:netflixcopyapp/widgets/search_page_app_bar_widget.dart';
 
 class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text(
-            'hola',
-            style: TextStyle(color: Colors.blue),
-          ),
-        ],
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Container(
+        color: Colors.black,
+        child: Column(
+          children: <Widget>[
+            const SearchPageAppBarWidget(),
+          ],
+        ),
       ),
     );
   }
